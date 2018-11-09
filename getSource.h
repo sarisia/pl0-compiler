@@ -33,7 +33,7 @@ typedef  enum  keys {			/*　キーや文字の種類（名前）　*/
 } KeyId;
 
 // fuckin dirty hack
-static char *keyArray[40] = {
+static char *keyArray[42] = {
 	"Begin", "End",				/*　予約語の名前　*/
 	"If", "Then",
 	"While", "Do",
