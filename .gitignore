@@ -1,5 +1,6 @@
 _*
 *.pl0
 *.html
+*.o
 /src
-main2
+/main2
