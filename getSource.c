@@ -49,6 +49,7 @@ static struct keyWd KeyWdT[] = {	/*　予約語や記号と名前(KeyId)の表�
 	{"var", Var},
 	{"const", Const},
 	{"odd", Odd},
+	{"read", Read},
 	{"write", Write},
 	{"writeln",WriteLn},
 	{"$dummy1",end_of_KeyWd},
@@ -59,6 +60,8 @@ static struct keyWd KeyWdT[] = {	/*　予約語や記号と名前(KeyId)の表�
 	{"/", Div},
 	{"(", Lparen},
 	{")", Rparen},
+	{"[", Lbrac},
+	{"]", Rbrac},
 	{"=", Equal},
 	{"<", Lss},
 	{">", Gtr},
@@ -100,6 +103,7 @@ static void initCharClassT()		/*　文字の種類を示す表を作る関数　
 	charClassT['+'] = Plus; charClassT['-'] = Minus;
 	charClassT['*'] = Mult; charClassT['/'] = Div;
 	charClassT['('] = Lparen; charClassT[')'] = Rparen;
+	charClassT['['] = Lbrac; charClassT[']'] = Rbrac;
 	charClassT['='] = Equal; charClassT['<'] = Lss;
 	charClassT['>'] = Gtr; charClassT[','] = Comma;
 	charClassT['.'] = Period; charClassT[';'] = Semicolon;

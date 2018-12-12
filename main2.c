@@ -6,7 +6,7 @@
 
 void printToken(Token token)
 {
-	printf("%d", token.kind);    /*　tokenの種類（KeyId）を整数で出力　*/
+	printf("%2d(%12s)", token.kind, keyArray[token.kind]);    /*　tokenの種類（KeyId）を整数で出力　*/
 	if (token.kind == Id)
 		printf("\t%s", token.u.id);  /* Identifierならば，名前も出力 */
 	if (token.kind == Num)

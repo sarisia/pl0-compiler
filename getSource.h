@@ -15,11 +15,13 @@ typedef  enum  keys {			/*　キーや文字の種類（名前）　*/
 	While, Do,
 	Ret, Func, 
 	Var, Const, Odd,
+	Read,
 	Write, WriteLn,
 	end_of_KeyWd,				/*　予約語の名前はここまで　*/
 	Plus, Minus,				/*　演算子と区切り記号の名前　*/
 	Mult, Div,	
 	Lparen, Rparen,
+	Lbrac, Rbrac,
 	Equal, Lss, Gtr,
 	NotEq, LssEq, GtrEq, 
 	Comma, Period, Semicolon,
@@ -29,6 +31,30 @@ typedef  enum  keys {			/*　キーや文字の種類（名前）　*/
 	end_of_Token,
 	letter, digit, colon, others		/*　上記以外の文字の種類　*/
 } KeyId;
+
+// fuckin dirty hack
+static char *keyArray[42] = {
+	"Begin", "End",				/*　予約語の名前　*/
+	"If", "Then",
+	"While", "Do",
+	"Ret", "Func", 
+	"Var", "Const", "Odd",
+	"Read",
+	"Write", "WriteLn",
+	"end_of_KeyWd",				/*　予約語の名前はここまで　*/
+	"Plus", "Minus",				/*　演算子と区切り記号の名前　*/
+	"Mult", "Div",	
+	"Lparen", "Rparen",
+	"Lbrac", "Rbrac",
+	"Equal", "Lss", "Gtr",
+	"NotEq", "LssEq", "GtrEq", 
+	"Comma", "Period", "Semicolon",
+	"Assign",
+	"end_of_KeySym",				/*　演算子と区切り記号の名前はここまで　*/
+	"Id", "Num", "nul",				/*　トークンの種類　*/
+	"end_of_Token",
+	"letter", "digit", "colon", "others"
+};
 
 typedef  struct  token {			/*　トークンの型　*/
 	KeyId kind;				/*　トークンの種類かキーの名前　*/
