@@ -128,6 +128,7 @@ void printCode(int i)		/*　命令語の印字　*/
 		case greq: printf(",greq\n"); return;
 		case wrt: printf(",wrt\n"); return;
 		case wrl: printf(",wrl\n"); return;
+		case red: printf(",red\n"); return;
 		}
 	}
 }	
