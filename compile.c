@@ -215,6 +215,19 @@ void statement()			/*　文のコンパイル　*/
 			genCodeV(jmp, backP2);		/*　while文の先頭へのジャンプ命令　*/
 			backPatch(backP);	/*　偽のとき飛び出すjpc命令へのバックパッチ　*/
 			return;
+		case Read:
+			token = nextToken();
+			if(token.kind != Id)
+				errorType("var");
+			tIndex = searchT(token.u.id, varId);
+			if(kindT(tIndex) != varId)
+				errorType("var");
+			
+			genCodeO(red);
+			genCodeT(sto, tIndex);
+
+			token = nextToken();
+			return;
 		case Write:			/*　write文のコンパイル　*/
 			token = nextToken();
 			expression();				/*　式のコンパイル　*/
