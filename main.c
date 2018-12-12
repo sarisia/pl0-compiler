@@ -12,7 +12,7 @@ main()
 	if (!openSource(fileName))	/*　ソースプログラムファイルのopen　*/
 		return;			/*　openに失敗すれば終わり　*/
 	if (compile())			/*　コンパイルして　*/
-		execute();			/*　エラーがなければ実行　*/
+	//	execute();			/*　エラーがなければ実行　*/
 	closeSource();			/*　ソースプログラムファイルのclose　*/
 }
 
