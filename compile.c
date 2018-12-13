@@ -255,9 +255,18 @@ void statement()			/*　文のコンパイル　*/
 			token = nextToken();
 			if(token.kind == Id) {
 				tIndex = searchT(token.u.id, varId);
-				if(kindT(tIndex) == varId) {
+				k = kindT(tIndex);
+				if(k == varId) {
 					genCodeO(red);
 					genCodeT(sto, tIndex);
+				}
+				else if(k == arrayId) {
+					token = checkGet(token, Lbrac);
+					expression();
+					token = checkGet(token, Rbrac);
+					genCodeO(red);
+					genCodeT(stoa, tIndex);
+					return; // used checkGet before so return to avoid nextToken()
 				}
 				else errorType("var");
 			}
