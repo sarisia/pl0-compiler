@@ -118,7 +118,7 @@ void varDecl()				/*　変数宣言のコンパイル　*/
 				}
 				else errorType("num/const");
 
-				if(nextToken().kind == Rbrac)
+				if(nextToken().kind == Rbrac) // we cannot detect if checkGet outputs error or not here
 					if(aSize) enterTarray(origToken.u.id, aSize);
 				else errorInsert(Rbrac) // actually this don't add array to entry table
 
