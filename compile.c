@@ -217,14 +217,15 @@ void statement()			/*　文のコンパイル　*/
 			return;
 		case Read:
 			token = nextToken();
-			if(token.kind != Id)
-				errorType("var");
+			if(token.kind == Id) {
 				tIndex = searchT(token.u.id, varId);
-			if(kindT(tIndex) != varId)
-				errorType("var");
-			
+				if(kindT(tIndex) == varId) {
 					genCodeO(red);
 					genCodeT(sto, tIndex);
+				}
+				else errorType("var");
+			}
+			else errorType("var");
 
 			token = nextToken();
 			return;
