@@ -362,6 +362,11 @@ void factor()					/*　式の因子のコンパイル　*/
 			}
 			genCodeT(cal, tIndex);				/*　call命令　*/
 			break;
+		case arrayId:
+			token = checkGet(token, Lbrac);
+			expression();
+			token = checkGet(token, Rbrac);
+			genCodeT(loda, tIndex);
 		}
 	}else if (token.kind==Num){			/*　定数　*/
 		genCodeV(lit, token.u.value);
