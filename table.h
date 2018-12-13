@@ -17,6 +17,7 @@ int enterTfunc(char *id, int v);	/*　名前表に関数名と先頭番地を登
 int enterTvar(char *id);		/*　名前表に変数名を登録　*/
 int enterTpar(char *id);		/*　名前表にパラメタ名を登録　*/
 int enterTconst(char *id, int v);	/*　名前表に定数名とその値を登録　*/
+int enterTarray(char *id, int size);
 void endpar();				/*　パラメタ宣言部の最後で呼ばれる　*/
 void changeV(int ti, int newVal);	/*　名前表[ti]の値（関数の先頭番地）の変更　*/
 

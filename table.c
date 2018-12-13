@@ -121,6 +121,15 @@ int enterTconst(char *id, int v)		/*　名前表に定数名とその値を登�
 	return tIndex;
 }
 
+int enterTarray(char *id, int size) {
+	enterT(id);
+	nameTable[tIndex].kind = arrayId;
+	nameTable[tIndex].u.raddr.level = level;
+	nameTable[tIndex].u.raddr.addr = localAddr;
+	localAddr += size;
+	return tIndex;
+}
+
 void endpar()					/*　パラメタ宣言部の最後で呼ばれる　*/
 {
 	int i;
