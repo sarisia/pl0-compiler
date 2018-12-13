@@ -2,7 +2,7 @@
    /******************** codegen.h ********************/
 
 typedef enum codes{			/*　命令語のコード　*/
-	lit, opr, lod, sto, cal, ret, ict, jmp, jpc
+	lit, opr, lod, sto, cal, ret, ict, jmp, jpc, loda, stoa
 }OpCode;
 
 typedef enum ops{			/*　演算命令のコード　*/

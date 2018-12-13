@@ -103,6 +103,8 @@ void printCode(int i)		/*　命令語の印字　*/
 	case ict: printf("ict"); flag=1; break;
 	case jmp: printf("jmp"); flag=1; break;
 	case jpc: printf("jpc"); flag=1; break;
+	case loda:printf("loda");flag=2; break;
+	case stoa:printf("stoa");flag=2; break;
 	}
 	switch(flag){
 	case 1:
