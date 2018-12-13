@@ -109,7 +109,7 @@ void varDecl()				/*　変数宣言のコンパイル　*/
 					aSize = token.u.value;
 					// enterTarray(origToken.u.id, token.u.value);
 				else if(token.kind == Id) {
-					tIndex = searchT(token.u.id, constId); // 第2引数は varId 以外ならなんでもよさそう
+					int tIndex = searchT(token.u.id, constId); // 第2引数は varId 以外ならなんでもよさそう
 					if(tIndex == constId)
 						aSize = val(tIndex);
 						// enterTarray(origToken.u.id, val(tIndex));
@@ -120,13 +120,13 @@ void varDecl()				/*　変数宣言のコンパイル　*/
 
 				if(nextToken().kind == Rbrac) // we cannot detect if checkGet outputs error or not here
 					if(aSize) enterTarray(origToken.u.id, aSize);
-				else errorInsert(Rbrac) // actually this don't add array to entry table
+				else errorInsert(Rbrac); // actually this don't add array to entry table
 
 				token = nextToken();
 			}
 			else { // var decl
 				setIdKind(varId);		/*　印字のための情報のセット　*/
-				enterTvar(origToken.u.id);		/*　変数名をテーブルに、番地はtableが決める　*/}
+				enterTvar(origToken.u.id);		/*　変数名をテーブルに、番地はtableが決める　*/
 			}
 		}else
 			errorMissingId();
@@ -191,7 +191,7 @@ void statement()			/*　文のコンパイル　*/
 			tIndex = searchT(token.u.id, varId);	/*　左辺の変数のインデックス　*/
 			setIdKind(k=kindT(tIndex));			/*　印字のための情報のセット　*/
 			if(k == arrayId) {
-				token = checkGet(token, Lbrac);
+				token = checkGet(nextToken(), Lbrac);
 				expression();
 				token = checkGet(token, Rbrac);
 				token = checkGet(token, Assign);
@@ -261,7 +261,7 @@ void statement()			/*　文のコンパイル　*/
 					genCodeT(sto, tIndex);
 				}
 				else if(k == arrayId) {
-					token = checkGet(token, Lbrac);
+					token = checkGet(nextToken(), Lbrac);
 					expression();
 					token = checkGet(token, Rbrac);
 					genCodeO(red);
@@ -383,7 +383,7 @@ void factor()					/*　式の因子のコンパイル　*/
 			genCodeT(cal, tIndex);				/*　call命令　*/
 			break;
 		case arrayId:
-			token = checkGet(token, Lbrac);
+			token = checkGet(nextToken(), Lbrac);
 			expression();
 			token = checkGet(token, Rbrac);
 			genCodeT(loda, tIndex);
