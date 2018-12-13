@@ -110,11 +110,10 @@ void varDecl()				/*　変数宣言のコンパイル　*/
 					// enterTarray(origToken.u.id, token.u.value);
 				else if(token.kind == Id) {
 					int tIndex = searchT(token.u.id, constId); // 第2引数は varId 以外ならなんでもよさそう
-					if(tIndex == constId)
+					if(kindT(tIndex) == constId)
 						aSize = val(tIndex);
 						// enterTarray(origToken.u.id, val(tIndex));
-					else
-						errorType("num/const");
+					else errorType("num/const");
 				}
 				else errorType("num/const");
 
