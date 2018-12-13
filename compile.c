@@ -190,11 +190,22 @@ void statement()			/*　文のコンパイル　*/
 		case Id:					/*　代入文のコンパイル　*/
 			tIndex = searchT(token.u.id, varId);	/*　左辺の変数のインデックス　*/
 			setIdKind(k=kindT(tIndex));			/*　印字のための情報のセット　*/
-			if (k != varId && k != parId) 		/*　変数名かパラメタ名のはず　*/
-				errorType("var/par");
-			token = checkGet(nextToken(), Assign);			/*　":="のはず　*/
-			expression();					/*　式のコンパイル　*/
-			genCodeT(sto, tIndex);				/*　左辺への代入命令　*/
+			if(k == arrayId) {
+				token = checkGet(token, Lbrac);
+				expression();
+				token = checkGet(token, Rbrac);
+				token = checkGet(token, Assign);
+				expression();
+				genCodeT(stoa, tIndex);
+			}
+			else {
+				if (k != varId && k != parId) 		/*　変数名かパラメタ名のはず　*/
+					errorType("var/par");
+				token = checkGet(nextToken(), Assign);			/*　":="のはず　*/
+				expression();					/*　式のコンパイル　*/
+				genCodeT(sto, tIndex);				/*　左辺への代入命令　*/
+			}
+
 			return;
 		case If:					/*　if文のコンパイル　*/
 			token = nextToken();
