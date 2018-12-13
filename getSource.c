@@ -431,6 +431,8 @@ void printcToken()				/*　現在のトークンの印字　*/
 		case constId: 
 			fprintf(fptex, "<tt>%s</tt>", cToken.u.id); return;
 			/* fprintf(fptex, "{\\sf %s}", cToken.u.id); return; */
+		case arrayId:
+			fprintf(fptex, "%s", cToken.u.id); return;
 		}
 	}else if (i==(int)Num)			/*　Num　*/
 		fprintf(fptex, "%d", cToken.u.value);

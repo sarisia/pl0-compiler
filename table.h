@@ -2,7 +2,7 @@
  /***********table.h***********/
 
 typedef enum kindT {		/*　Identifierの種類　*/
-	varId, funcId, parId, constId
+	varId, funcId, parId, constId, arrayId
 }KindT;
 typedef struct relAddr{		/*　変数、パラメタ、関数のアドレスの型　*/
 	int level;
