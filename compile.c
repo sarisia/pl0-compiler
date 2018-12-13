@@ -100,9 +100,34 @@ void varDecl()				/*　変数宣言のコンパイル　*/
 {
 	while(1){
 		if (token.kind==Id){
-			setIdKind(varId);		/*　印字のための情報のセット　*/
-			enterTvar(token.u.id);		/*　変数名をテーブルに、番地はtableが決める　*/
+			Token origToken = token;
+			int aSize = 0;
 			token = nextToken();
+			if(token.kind == Lbrac) { // array decl
+				token = nextToken();
+				if(token.kind == Num)
+					aSize = token.u.value;
+					// enterTarray(origToken.u.id, token.u.value);
+				else if(token.kind == Id) {
+					tIndex = searchT(token.u.id, constId); // 第2引数は varId 以外ならなんでもよさそう
+					if(tIndex == constId)
+						aSize = val(tIndex);
+						// enterTarray(origToken.u.id, val(tIndex));
+					else
+						errorType("num/const");
+				}
+				else errorType("num/const");
+
+				if(nextToken().kind == Rbrac)
+					if(aSize) enterTarray(origToken.u.id, aSize);
+				else errorInsert(Rbrac) // actually this don't add array to entry table
+
+				token = nextToken();
+			}
+			else { // var decl
+				setIdKind(varId);		/*　印字のための情報のセット　*/
+				enterTvar(origToken.u.id);		/*　変数名をテーブルに、番地はtableが決める　*/}
+			}
 		}else
 			errorMissingId();
 		if (token.kind!=Comma){		/*　次がコンマなら変数宣言が続く　*/
