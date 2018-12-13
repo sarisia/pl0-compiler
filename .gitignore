@@ -4,3 +4,5 @@ _*
 *.o
 /src
 /main2
+/pl0d
+report*

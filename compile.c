@@ -219,12 +219,12 @@ void statement()			/*　文のコンパイル　*/
 			token = nextToken();
 			if(token.kind != Id)
 				errorType("var");
-			tIndex = searchT(token.u.id, varId);
+				tIndex = searchT(token.u.id, varId);
 			if(kindT(tIndex) != varId)
 				errorType("var");
 			
-			genCodeO(red);
-			genCodeT(sto, tIndex);
+					genCodeO(red);
+					genCodeT(sto, tIndex);
 
 			token = nextToken();
 			return;
