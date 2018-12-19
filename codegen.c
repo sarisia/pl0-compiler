@@ -155,6 +155,11 @@ void execute()			/*　目的コード（命令語）の実行　*/
 				 break;
 		case sto: stack[display[i.u.addr.level] + i.u.addr.addr] = stack[--top]; 
 				 break;
+		case loda: stack[top-1] = stack[display[i.u.addr.level] + i.u.addr.addr + stack[top-1]];
+				 break;
+		case stoa: stack[display[i.u.addr.level] + i.u.addr.addr + stack[top-2]] = stack[--top];
+				   top--;
+				 break;
 		case cal: lev = i.u.addr.level +1;		/*　 i.u.addr.levelはcalleeの名前のレベル　*/
 					 	/*　 calleeのブロックのレベルlevはそれに＋１したもの　*/
 				stack[top] = display[lev]; 	/*　display[lev]の退避　*/
