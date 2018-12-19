@@ -193,6 +193,7 @@ void execute()			/*　目的コード（命令語）の実行　*/
 			case greq: --top;  stack[top-1] = (stack[top-1] >= stack[top]); continue;
 			case wrt: printf("%d ", stack[--top]); continue;
 			case wrl: printf("\n"); continue;
+			case red: scanf("%d", &temp); stack[top++] = temp; continue;
 			}
 		}
 	} while (pc != 0);
